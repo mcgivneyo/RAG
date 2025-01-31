@@ -5,6 +5,15 @@
 * for fast development and iteration can also use gpt-4o-mini (requires access key)
 * Switching between models can be selected using a parameter in the llm  completion function (RAGAs metrics always uses chatgpt)  
 
+## Processes the NVIDIA Annual SEC Filing Report 2023  
+
+![nvidia sec](./img/nvidia_annual_report_2023.png)
+
+
+Checks RAG answers against HuggingFace Dataset:  
+zeitgeist-ai/financial-rag-nvidia-sec
+
+![zeitgeist-ai/financial-rag-nvidia-sec](./img/hf_dataset.png)
 
 
 ## Set up
@@ -62,8 +71,8 @@ I used out-of-the-box ragas metrics: These are "llm as a judge" based metrics, c
 
  My view is that metrics like these can be useful to guide optimisation and fine-tuning, assuming that human labelled data in unavailable. None of these metrics is perfect, the results and scoring are non-deterministic so the absolute scores may not in themselves be meaningful. Also manual inspection and review may also required to validate the metrics and failure cases. Evaluation and scoring of RAG pipelines, and llm hallucination detection in general, is an area of ongoing development.
 
-### 3.  HOw to improve the chunking for the RAG?
-Given the short length and lack of structure and formatting in the scraped text I created a simple character-length parser with an overlap parameter. A recursive character parser could be used to create better chunks, that are split at paragraph, sentence, word level etc. The character length and overlap length parameters are hyper-parameters to be tuned, in combination with the number of retrieved chunks.
+### 3.  How to improve the chunking for the RAG?
+I used recursive character parser to create better chunks, that are split at paragraph, sentence, word level etc. The character length and overlap length parameters are hyper-parameters to be tuned, in combination with the number of retrieved chunks. More sophisticated pdf parsers can be used to extract sections, headers, tables etc
 
 
 ## How else would you improve this RAG system? 
