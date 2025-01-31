@@ -5,7 +5,6 @@ import logging
 from pathlib import Path
 from typing import Union, List
 from pymilvus import MilvusClient, utility, connections
-import numpy as np
 import pandas as pd
 from datasets import load_dataset
 from sentence_transformers import SentenceTransformer
@@ -217,11 +216,6 @@ def init_collection(docname:str, n_chars=500, n_overlap_chars=100) -> None:
     returns:
         dict: chunk_dict {chunk_id: doc_id}
     """
-    # text_csv = pd.read_csv("resources/ee_case_studies.csv")
-    # chunks, chunk_dict = get_chunks(
-    #     text_csv["text"].tolist(), n_chars=n_chars, n_overlap_chars=n_overlap_chars
-    # )
-
     pdf_text = get_pdf_text([docname])
     chunks = split_files(pdf_text)
     delete_collection()
