@@ -1,5 +1,5 @@
 
-# Basic Rag with Evaluation
+# RAG on NVIDIA SEC Filing Report with RAGAs Evaluation
 
 * a simple rag implementation using llama3.2 running locally on ollama
 * for fast development and iteration can also use gpt-4o-mini (requires access key)
