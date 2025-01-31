@@ -1,0 +1,6 @@
+.genai_venv/
+.pytest_cache/
+src/__pycache__
+test/__pycache__
+resources/*.gguf
+resources/*.db
