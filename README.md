@@ -6,19 +6,19 @@
 * Switching between models can be selected using a parameter in the llm  completion function (RAGAs metrics always uses chatgpt)  
 
 
-# todo
-log in to hugging face hub
+
+## Set up
+1.  download nvidia 2023 SEC Filing Report and move to the resources folder  
+```
+!wget https://stocklight.com/stocks/us/nasdaq-nvda/nvidia/annual-reports/nasdaq-nvda-2023-10K-23668751.pdf
+```
+
+2.  download the data set from Hugging Face  
+log in to hugging face hub  and enter your token value
+```
 huggingface-cli login
-
-
-
-# download nvidia 2023 SEC Filing Report
-# !wget https://stocklight.com/stocks/us/nasdaq-nvda/nvidia/annual-reports/nasdaq-nvda-2023-10K-23668751.pdf
-
-
-update the env
-
-
+```
+see https://huggingface.co/docs/hub/en/datasets-downloading
 
 
 ## Running the app
@@ -32,21 +32,20 @@ Start the local LLM:
 ```
 ollama run llama3.2:latest
 ```
-Run the main script:
+in another terminal session the main script:
 ```
 python3.11 ./src/rag.py 
 ```
 
-
+run automated tests with pytest  
+```
+python -m pytest test/test_prompts.py 
+```
 
 
 ## 1. Adding tests to validate the model output.  
 
 __Metrics:__  
-I used the sample questions to create synthetic ground truth answers using gpt-4o. These are a proxy for human labelled gold data set answers. 
-The sample questions are noisy and require futher refinement to remove irrelevent, or context-free questions not specific to the scraped text eg "what is the name of the new platform?"
-that make them unsuitable for RAG evaluation. Additional work should be done to add filtering/scoring for "don't know" answers
-
 To evaluate the retrieval part: 
 I used hit-rate and Mean Reciprocal Rank to score whether the chunks for each document were retrieved from the vector database for the corresponding question.
 1.  Hit rate: scores 1 if any of the chunks from the document were returned from the vector database (ie did the retrieve identify any of the chunks corresponding to the question)
